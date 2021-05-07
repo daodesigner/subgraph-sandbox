@@ -1,0 +1,134 @@
+type FundingRoundFactory @entity {
+  id: ID!
+  owner: String!
+  coordinator: Coordinator!
+  nativeToken: Token!
+  contributorRegistry: ContributorRegistry!
+  recipientRegistry: RecipientRegistry!
+  currentRound: FundingRound!
+
+  maciFactory: String!
+  coordinatorPubKey: String!
+  stateTreeDepth: BigInt!
+  messageTreeDepth: BigInt!
+  voteOptionTreeDepth: BigInt!
+  tallyBatchSize: BigInt!
+  messageBatchSize: BigInt!
+  batchUstVerifier: BigInt!
+  qvtVerifier: BigInt!
+  signUpDuration: BigInt!
+  votingDuration: BigInt!
+
+  fundingRounds: [FundingRound!] @derivedFrom(field: "fundingRoundFactory")
+
+  createdAt: String!
+  lastUpdatedAt: String!
+}
+
+type FundingRound @entity {
+  id: ID!
+  fundingRoundFactory: FundingRoundFactory!
+  nativeToken: Token!
+
+
+  coordinator: String!
+  maci: String!
+  voiceCreditFactor: BigInt!
+  contributorCount: BigInt!
+  matchingPoolSize: BigInt!
+  totalSpent: BigInt!
+  totalVotes: BigInt!
+  isFinalized: Boolean!
+  isCancelled: Boolean!
+
+
+  recipients: [Recipient!] @derivedFrom(field: "fundingRounds")
+  contributors: [Contributor!] @derivedFrom(field: "fundingRounds")
+  contributions: [Contribution!] @derivedFrom(field: "fundingRound")
+
+  createdAt: String!
+  lastUpdatedAt: String!
+
+}
+
+type RecipientRegistry @entity {
+  id: ID!
+  fundingRoundFactory: FundingRoundFactory!
+
+  recipients: [Recipient!] @derivedFrom(field: "recipientRegistry")
+
+  createdAt: String!
+  lastUpdatedAt: String!
+}
+
+
+type Recipient @entity {
+  id: ID!
+  recipientRegistry: RecipientRegistry!
+
+  requestType: String!
+  requester: String!
+  submissionTime: String!
+  deposit: BigInt!
+  recipientAddress: String!
+  recipientMetadata: String!
+
+
+  fundingRounds: [FundingRound!]
+
+  createdAt: String!
+  lastUpdatedAt: String!
+}
+
+type ContributorRegistry @entity {
+  id: ID!
+  fundingRoundFactory: FundingRoundFactory!
+
+  contributors: [Contributor!] @derivedFrom(field: "contributorRegistry")
+
+  createdAt: String!
+  lastUpdatedAt: String!
+}
+
+
+
+type Contributor @entity {
+  id: ID!
+  contributorRegistry: ContributorRegistry!
+
+  verified: Boolean!
+  verifiedTimeStamp: String!
+  sponsors: [String!]
+
+  fundingRounds: [FundingRound!]
+
+  createdAt: String!
+  lastUpdatedAt: String!
+}
+
+type Coordinator @entity {
+  id: ID!
+  fundingRoundFactory: FundingRoundFactory!
+  contact: String
+
+  createdAt: String!
+  lastUpdatedAt: String!
+}
+
+type Contribution @entity {
+  id: ID!
+  contributor: Contributor!
+  fundingRound: FundingRound!
+  amount: BigInt!
+
+  createdAt: String!
+}
+
+type Token @entity {
+  id: ID!
+  tokenAddress: Bytes!
+  symbol: String
+  decimals: BigInt
+  createdAt: String!
+  lastUpdatedAt: String!
+}
