@@ -105,7 +105,7 @@ dataSources:
     source:
       address: "0xe312E958c47b971C250bC1228A11Df1276643e5D"
       abi: BrightIdUserRegistry
-      startBlock: 14399200
+      startBlock: 13000489
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
