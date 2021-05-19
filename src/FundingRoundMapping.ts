@@ -56,14 +56,6 @@ export function handleContribution(event: Contribution): void {
 
   let brightIdUserRegistryContract = BrightIdUserRegistryContract.bind(brightIdUserRegistryAddress);
 
-  //DEBT: Retroactively register here as there are no events emitted in registration function
-  let contributor = new Contributor(contributorId);
-  contributor.verified = true;
-  contributor.verifiedTimeStamp = brightIdUserRegistryContract.verifications(event.params._sender).value0.toString();
-  contributor.contributorAddress = event.params._sender;
-  contributor.fundingRounds.push(fundingRoundId);
-  contributor.save();
-
   //NOTE: Contributions are deleted from DB table if they are withdrawn
   let contribution = new FundingRoundContribution(contributionId);
   contribution.contributor = contributorId;
@@ -102,15 +94,6 @@ export function handleFundsClaimed(event: FundsClaimed): void {
   let donationId = recipientId.concat("-donation-").concat(fundingRoundId);
   let timestamp = event.block.timestamp.toString();
 
-  //DEBT: Retroactively register here as there are no events emitted in registration function
-  let recipient = new Recipient(recipientId);
-
-  recipient.recipientAddress = event.params._recipient;
-
-  recipient.fundingRounds.push(fundingRoundId);
-  recipient.lastUpdatedAt = timestamp;
-  recipient.save();
-
   let donation = Donation.load(donationId);
   donation.fundingRound = fundingRoundId;
   donation.recipient = event.params._recipient.toHexString();
@@ -133,8 +116,8 @@ export function handleTallyPublished(event: TallyPublished): void {
 //NOTE: Contributors must first be verified in the Registry contract before they can register for a particular funding round
 export function handleRegister(call: RegisterCall): void {
   log.info("handleRegister" + call.inputs._data.toString(), []);
-  let fundingRoundId = call.to.toHexString();
-  let timestamp = call.block.timestamp.toString();
+  // let fundingRoundId = call.to.toHexString();
+  // let timestamp = call.block.timestamp.toString();
 }
 export function handleOwnershipTransferred(event: OwnershipTransferred): void {
   log.info("handleOwnershipTransferred- Funding Round", []);
