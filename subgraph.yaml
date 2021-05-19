@@ -39,3 +39,39 @@ dataSources:
         - function: register(address,bytes)
           handler: handleRegister
       file: ./src/FundingRoundMapping.ts
+  - kind: ethereum/contract
+    name: FundingRoundFactory
+    network: xdai
+    source:
+      address: "0x549F91A93c94358C5f5380D7ABF23E1340CfF2db"
+      abi: FundingRoundFactory
+      startBlock: 14099200
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - FundingRoundFactory
+        - RecipientRegistry
+        - ContributorRegistry
+        - FundingRound
+      abis:
+        - name: FundingRoundFactory
+          file: ./abis/FundingRoundFactory.json
+      eventHandlers:
+        - event: CoordinatorChanged(address)
+          handler: handleCoordinatorChanged
+        - event: FundingSourceAdded(address)
+          handler: handleFundingSourceAdded
+        - event: FundingSourceRemoved(address)
+          handler: handleFundingSourceRemoved
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+        - event: RoundFinalized(address)
+          handler: handleRoundFinalized
+        - event: RoundStarted(address)
+          handler: handleRoundStarted
+        - event: TokenChanged(address)
+          handler: handleTokenChanged
+      file: ./src/FundingRoundFactoryMapping.ts
+
