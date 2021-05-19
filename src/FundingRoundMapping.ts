@@ -74,25 +74,7 @@ export function handleContribution(event: Contribution): void {
 
   //NOTE: Update Funding Round
   let fundingRound = FundingRound.load(fundingRoundId);
-  if (fundingRound == null) {
-    fundingRound = new FundingRound(fundingRoundId);
-
-    let tokenId = fundingRoundContract.nativeToken().toHexString();
-    let coordinator = fundingRoundContract.coordinator();
-    let maci = fundingRoundContract.maci();
-    let voiceCreditFactor = fundingRoundContract.voiceCreditFactor();
-    let contributorCount = fundingRoundContract.contributorCount();
-    let matchingPoolSize = fundingRoundContract.matchingPoolSize();
-
-    fundingRound.nativeToken = tokenId;
-    fundingRound.coordinator = coordinator;
-    fundingRound.maci = maci;
-    fundingRound.voiceCreditFactor = voiceCreditFactor;
-    fundingRound.contributorCount = contributorCount;
-    fundingRound.matchingPoolSize = matchingPoolSize;
-  }
   fundingRound.contributorCount = fundingRound.contributorCount.plus(BigInt.fromI32(1));
-
   fundingRound.lastUpdatedAt = timestamp;
 
   contribution.save();
@@ -150,10 +132,9 @@ export function handleTallyPublished(event: TallyPublished): void {
 //TODO: Need library to decode ABI in subgraph, or an additional event fired here.
 //NOTE: Contributors must first be verified in the Registry contract before they can register for a particular funding round
 export function handleRegister(call: RegisterCall): void {
-  log.info("handleRegister", []);
+  log.info("handleRegister" + call.inputs._data.toString(), []);
   let fundingRoundId = call.to.toHexString();
   let timestamp = call.block.timestamp.toString();
-  call.inputs._data;
 }
 export function handleOwnershipTransferred(event: OwnershipTransferred): void {
   log.info("handleOwnershipTransferred- Funding Round", []);

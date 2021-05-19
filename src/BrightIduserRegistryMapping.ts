@@ -5,6 +5,30 @@ import {
   Sponsor,
 } from "../generated/BrightIdUserRegistry/BrightIdUserRegistry";
 
+import { BrightIdUserRegistry as BrightIdUserRegistryContract } from "../generated/BrightIdUserRegistry/BrightIdUserRegistry";
+import {
+  Contribution,
+  ContributionWithdrawn,
+  FundsClaimed,
+  TallyPublished,
+  RegisterCall,
+  FundingRound as FundingRoundContract,
+} from "../generated/FundingRound/FundingRound";
+import { OptimisticRecipientRegistry } from "../generated/OptimisticRecipientRegistry/OptimisticRecipientRegistry";
+
+import {
+  FundingRoundFactory,
+  FundingRound,
+  RecipientRegistry,
+  Recipient,
+  ContributorRegistry,
+  Contributor,
+  Coordinator,
+  Contribution as FundingRoundContribution,
+  Donation,
+  Token,
+} from "../generated/schema";
+
 // It is also possible to access smart contracts from mappings. For
 // example, the contract that has emitted the event can be connected to
 // with:
@@ -31,4 +55,13 @@ export function handleSetBrightIdSettings(event: SetBrightIdSettings): void {
 
 export function handleSponsor(event: Sponsor): void {
   log.info("handleSponsor", []);
+  let contributorId = event.params.addr.toHexString();
+  let brightIdUserRegistryContract = BrightIdUserRegistryContract.bind(event.address);
+
+  //DEBT: Retroactively register here as there are no events emitted in registration function
+  let contributor = new Contributor(contributorId);
+  contributor.verified = true;
+  contributor.verifiedTimeStamp = brightIdUserRegistryContract.verifications(event.params.addr).value0.toString();
+  contributor.contributorAddress = event.params.addr;
+  contributor.save();
 }

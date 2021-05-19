@@ -552,13 +552,21 @@ export class Recipient extends Entity {
     this.set("id", Value.fromString(value));
   }
 
-  get recipientRegistry(): string {
+  get recipientRegistry(): string | null {
     let value = this.get("recipientRegistry");
-    return value.toString();
+    if (value === null || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toString();
+    }
   }
 
-  set recipientRegistry(value: string) {
-    this.set("recipientRegistry", Value.fromString(value));
+  set recipientRegistry(value: string | null) {
+    if (value === null) {
+      this.unset("recipientRegistry");
+    } else {
+      this.set("recipientRegistry", Value.fromString(value as string));
+    }
   }
 
   get requestType(): string {
@@ -613,6 +621,15 @@ export class Recipient extends Entity {
 
   set recipientMetadata(value: string) {
     this.set("recipientMetadata", Value.fromString(value));
+  }
+
+  get rejected(): boolean {
+    let value = this.get("rejected");
+    return value.toBoolean();
+  }
+
+  set rejected(value: boolean) {
+    this.set("rejected", Value.fromBoolean(value));
   }
 
   get fundingRounds(): Array<string> | null {

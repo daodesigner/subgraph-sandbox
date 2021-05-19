@@ -9,6 +9,29 @@ import {
   TokenChanged,
 } from "../generated/FundingRoundFactory/FundingRoundFactory";
 
+import { BrightIdUserRegistry as BrightIdUserRegistryContract } from "../generated/BrightIdUserRegistry/BrightIdUserRegistry";
+import {
+  Contribution,
+  ContributionWithdrawn,
+  FundsClaimed,
+  TallyPublished,
+  RegisterCall,
+  FundingRound as FundingRoundContract,
+} from "../generated/FundingRound/FundingRound";
+import { OptimisticRecipientRegistry } from "../generated/OptimisticRecipientRegistry/OptimisticRecipientRegistry";
+
+import {
+  FundingRoundFactory,
+  FundingRound,
+  RecipientRegistry,
+  Recipient,
+  ContributorRegistry,
+  Contributor,
+  Coordinator,
+  Contribution as FundingRoundContribution,
+  Donation,
+  Token,
+} from "../generated/schema";
 // It is also possible to access smart contracts from mappings. For
 // example, the contract that has emitted the event can be connected to
 // with:
@@ -55,6 +78,24 @@ export function handleRoundFinalized(event: RoundFinalized): void {
 
 export function handleRoundStarted(event: RoundStarted): void {
   log.info("handleRoundStarted!!!", []);
+  let fundingRoundId = event.params._round.toHexString();
+  let fundingRoundContract = FundingRoundContract.bind(event.params._round);
+  let fundingRound = new FundingRound(fundingRoundId);
+
+  let tokenId = fundingRoundContract.nativeToken().toHexString();
+  let coordinator = fundingRoundContract.coordinator();
+  let maci = fundingRoundContract.maci();
+  let voiceCreditFactor = fundingRoundContract.voiceCreditFactor();
+  let contributorCount = fundingRoundContract.contributorCount();
+  let matchingPoolSize = fundingRoundContract.matchingPoolSize();
+
+  fundingRound.nativeToken = tokenId;
+  fundingRound.coordinator = coordinator;
+  fundingRound.maci = maci;
+  fundingRound.voiceCreditFactor = voiceCreditFactor;
+  fundingRound.contributorCount = contributorCount;
+  fundingRound.matchingPoolSize = matchingPoolSize;
+  fundingRound.save();
 }
 
 export function handleTokenChanged(event: TokenChanged): void {

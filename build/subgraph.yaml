@@ -39,3 +39,88 @@ dataSources:
         - event: TokenChanged(address)
           handler: handleTokenChanged
       file: FundingRoundFactory/FundingRoundFactory.wasm
+  - kind: ethereum/contract
+    name: FundingRound
+    network: xdai
+    source:
+      address: "0x2179BbAcd3E77f6C2327F1BdAC125485ff537725"
+      abi: FundingRound
+      startBlock: 14099200
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - FundingRound
+        - Contribution
+        - Donation
+        - Recipient
+        - Contributor
+      abis:
+        - name: FundingRound
+          file: FundingRound/abis/FundingRound.json
+      eventHandlers:
+        - event: Contribution(indexed address,uint256)
+          handler: handleContribution
+        - event: ContributionWithdrawn(indexed address)
+          handler: handleContributionWithdrawn
+        - event: FundsClaimed(indexed uint256,indexed address,uint256)
+          handler: handleFundsClaimed
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+        - event: TallyPublished(string)
+          handler: handleTallyPublished
+      callHandlers:
+        - function: register(address,bytes)
+          handler: handleRegister
+      file: FundingRound/FundingRound.wasm
+  - kind: ethereum/contract
+    name: OptimisticRecipientRegistry
+    network: xdai
+    source:
+      address: "0x71CD33852D9A3cc452af9D8f93c7EC5249876649"
+      abi: OptimisticRecipientRegistry
+      startBlock: 14399200
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - RecipientRegistry
+        - Recipient
+      abis:
+        - name: OptimisticRecipientRegistry
+          file: OptimisticRecipientRegistry/abis/OptimisticRecipientRegistry.json
+      eventHandlers:
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+        - event: RequestResolved(indexed bytes32,indexed uint8,indexed bool,uint256,uint256)
+          handler: handleRequestResolved
+        - event: RequestSubmitted(indexed bytes32,indexed uint8,address,string,uint256)
+          handler: handleRequestSubmitted
+      file: OptimisticRecipientRegistry/OptimisticRecipientRegistry.wasm
+  - kind: ethereum/contract
+    name: BrightIdUserRegistry
+    network: xdai
+    source:
+      address: "0xe312E958c47b971C250bC1228A11Df1276643e5D"
+      abi: BrightIdUserRegistry
+      startBlock: 14399200
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - ContributorRegistry
+        - Contributor
+      abis:
+        - name: BrightIdUserRegistry
+          file: BrightIdUserRegistry/abis/BrightIdUserRegistry.json
+      eventHandlers:
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+        - event: SetBrightIdSettings(bytes32,address)
+          handler: handleSetBrightIdSettings
+        - event: Sponsor(indexed address)
+          handler: handleSponsor
+      file: BrightIdUserRegistry/BrightIdUserRegistry.wasm

@@ -73,7 +73,7 @@ type Recipient @entity {
   deposit: BigInt!
   recipientAddress: Bytes!
   recipientMetadata: String!
-
+  rejected: Boolean
 
   fundingRounds: [FundingRound!]
 
