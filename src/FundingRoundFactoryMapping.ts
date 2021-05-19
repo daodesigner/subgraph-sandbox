@@ -7,6 +7,7 @@ import {
   RoundFinalized,
   RoundStarted,
   TokenChanged,
+  FundingRoundFactory as FundingRoundFactoryContract,
 } from "../generated/FundingRoundFactory/FundingRoundFactory";
 
 import { BrightIdUserRegistry as BrightIdUserRegistryContract } from "../generated/BrightIdUserRegistry/BrightIdUserRegistry";
@@ -32,6 +33,8 @@ import {
   Donation,
   Token,
 } from "../generated/schema";
+
+import { FundingRound as FundingRoundTemplate } from "../generated/templates";
 // It is also possible to access smart contracts from mappings. For
 // example, the contract that has emitted the event can be connected to
 // with:
@@ -70,17 +73,12 @@ export function handleFundingSourceRemoved(event: FundingSourceRemoved): void {
 
 export function handleOwnershipTransferred(event: OwnershipTransferred): void {
   log.info("handleOwnershipTransferred", []);
-}
+  let fundingRoundFactoryContract = FundingRoundFactoryContract.bind(event.address);
+  let fundingRoundAddress = fundingRoundFactoryContract.getCurrentRound();
 
-export function handleRoundFinalized(event: RoundFinalized): void {
-  log.info("handleRoundFinalized", []);
-}
+  let fundingRoundContract = FundingRoundContract.bind(fundingRoundAddress);
 
-export function handleRoundStarted(event: RoundStarted): void {
-  log.info("handleRoundStarted!!!", []);
-  let fundingRoundId = event.params._round.toHexString();
-  let fundingRoundContract = FundingRoundContract.bind(event.params._round);
-  let fundingRound = new FundingRound(fundingRoundId);
+  let fundingRound = new FundingRound(fundingRoundAddress.toHexString());
 
   let tokenId = fundingRoundContract.nativeToken().toHexString();
   let coordinator = fundingRoundContract.coordinator();
@@ -95,6 +93,21 @@ export function handleRoundStarted(event: RoundStarted): void {
   fundingRound.voiceCreditFactor = voiceCreditFactor;
   fundingRound.contributorCount = contributorCount;
   fundingRound.matchingPoolSize = matchingPoolSize;
+
+  fundingRound.save();
+}
+
+export function handleRoundFinalized(event: RoundFinalized): void {
+  log.info("handleRoundFinalized", []);
+}
+
+export function handleRoundStarted(event: RoundStarted): void {
+  log.info("handleRoundStarted!!!", []);
+  let fundingRoundId = event.params._round.toHexString();
+
+  FundingRoundTemplate.create(event.params._round);
+  let fundingRound = new FundingRound(fundingRoundId);
+
   fundingRound.save();
 }
 

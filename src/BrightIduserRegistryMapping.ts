@@ -60,7 +60,7 @@ export function handleSponsor(event: Sponsor): void {
 
   //DEBT: Retroactively register here as there are no events emitted in registration function
   let contributor = new Contributor(contributorId);
-  contributor.verified = true;
+  contributor.verified = brightIdUserRegistryContract.verifications(event.params.addr).value1;
   contributor.verifiedTimeStamp = brightIdUserRegistryContract.verifications(event.params.addr).value0.toString();
   contributor.contributorAddress = event.params.addr;
   contributor.save();

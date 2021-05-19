@@ -52,9 +52,6 @@ export function handleContribution(event: Contribution): void {
 
   let fundingRoundContract = FundingRoundContract.bind(event.address);
   let voiceCreditFactor = fundingRoundContract.voiceCreditFactor();
-  let brightIdUserRegistryAddress = fundingRoundContract.userRegistry();
-
-  let brightIdUserRegistryContract = BrightIdUserRegistryContract.bind(brightIdUserRegistryAddress);
 
   //NOTE: Contributions are deleted from DB table if they are withdrawn
   let contribution = new FundingRoundContribution(contributionId);
