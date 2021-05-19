@@ -23,6 +23,8 @@ dataSources:
       abis:
         - name: FundingRoundFactory
           file: ./abis/FundingRoundFactory.json
+        - name: FundingRound
+          file: ./abis/FundingRound.json
       eventHandlers:
         - event: CoordinatorChanged(address)
           handler: handleCoordinatorChanged
