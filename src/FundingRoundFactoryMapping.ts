@@ -54,7 +54,7 @@ export function handleRoundFinalized(event: RoundFinalized): void {
 }
 
 export function handleRoundStarted(event: RoundStarted): void {
-  log.info("handleRoundStarted", []);
+  log.info("handleRoundStarted!!!", []);
 }
 
 export function handleTokenChanged(event: TokenChanged): void {
