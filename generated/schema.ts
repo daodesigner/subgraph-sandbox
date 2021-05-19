@@ -42,192 +42,327 @@ export class FundingRoundFactory extends Entity {
     this.set("id", Value.fromString(value));
   }
 
-  get owner(): Bytes {
+  get owner(): Bytes | null {
     let value = this.get("owner");
-    return value.toBytes();
-  }
-
-  set owner(value: Bytes) {
-    this.set("owner", Value.fromBytes(value));
-  }
-
-  get coordinator(): string {
-    let value = this.get("coordinator");
-    return value.toString();
-  }
-
-  set coordinator(value: string) {
-    this.set("coordinator", Value.fromString(value));
-  }
-
-  get nativeToken(): string {
-    let value = this.get("nativeToken");
-    return value.toString();
-  }
-
-  set nativeToken(value: string) {
-    this.set("nativeToken", Value.fromString(value));
-  }
-
-  get contributorRegistry(): string {
-    let value = this.get("contributorRegistry");
-    return value.toString();
-  }
-
-  set contributorRegistry(value: string) {
-    this.set("contributorRegistry", Value.fromString(value));
-  }
-
-  get recipientRegistry(): string {
-    let value = this.get("recipientRegistry");
-    return value.toString();
-  }
-
-  set recipientRegistry(value: string) {
-    this.set("recipientRegistry", Value.fromString(value));
-  }
-
-  get currentRound(): string {
-    let value = this.get("currentRound");
-    return value.toString();
-  }
-
-  set currentRound(value: string) {
-    this.set("currentRound", Value.fromString(value));
-  }
-
-  get maciFactory(): Bytes {
-    let value = this.get("maciFactory");
-    return value.toBytes();
-  }
-
-  set maciFactory(value: Bytes) {
-    this.set("maciFactory", Value.fromBytes(value));
-  }
-
-  get coordinatorPubKey(): string {
-    let value = this.get("coordinatorPubKey");
-    return value.toString();
-  }
-
-  set coordinatorPubKey(value: string) {
-    this.set("coordinatorPubKey", Value.fromString(value));
-  }
-
-  get stateTreeDepth(): BigInt {
-    let value = this.get("stateTreeDepth");
-    return value.toBigInt();
-  }
-
-  set stateTreeDepth(value: BigInt) {
-    this.set("stateTreeDepth", Value.fromBigInt(value));
-  }
-
-  get messageTreeDepth(): BigInt {
-    let value = this.get("messageTreeDepth");
-    return value.toBigInt();
-  }
-
-  set messageTreeDepth(value: BigInt) {
-    this.set("messageTreeDepth", Value.fromBigInt(value));
-  }
-
-  get voteOptionTreeDepth(): BigInt {
-    let value = this.get("voteOptionTreeDepth");
-    return value.toBigInt();
-  }
-
-  set voteOptionTreeDepth(value: BigInt) {
-    this.set("voteOptionTreeDepth", Value.fromBigInt(value));
-  }
-
-  get tallyBatchSize(): BigInt {
-    let value = this.get("tallyBatchSize");
-    return value.toBigInt();
-  }
-
-  set tallyBatchSize(value: BigInt) {
-    this.set("tallyBatchSize", Value.fromBigInt(value));
-  }
-
-  get messageBatchSize(): BigInt {
-    let value = this.get("messageBatchSize");
-    return value.toBigInt();
-  }
-
-  set messageBatchSize(value: BigInt) {
-    this.set("messageBatchSize", Value.fromBigInt(value));
-  }
-
-  get batchUstVerifier(): BigInt {
-    let value = this.get("batchUstVerifier");
-    return value.toBigInt();
-  }
-
-  set batchUstVerifier(value: BigInt) {
-    this.set("batchUstVerifier", Value.fromBigInt(value));
-  }
-
-  get qvtVerifier(): BigInt {
-    let value = this.get("qvtVerifier");
-    return value.toBigInt();
-  }
-
-  set qvtVerifier(value: BigInt) {
-    this.set("qvtVerifier", Value.fromBigInt(value));
-  }
-
-  get signUpDuration(): BigInt {
-    let value = this.get("signUpDuration");
-    return value.toBigInt();
-  }
-
-  set signUpDuration(value: BigInt) {
-    this.set("signUpDuration", Value.fromBigInt(value));
-  }
-
-  get votingDuration(): BigInt {
-    let value = this.get("votingDuration");
-    return value.toBigInt();
-  }
-
-  set votingDuration(value: BigInt) {
-    this.set("votingDuration", Value.fromBigInt(value));
-  }
-
-  get fundingRounds(): Array<string> | null {
-    let value = this.get("fundingRounds");
     if (value === null || value.kind == ValueKind.NULL) {
       return null;
     } else {
-      return value.toStringArray();
+      return value.toBytes();
     }
   }
 
-  set fundingRounds(value: Array<string> | null) {
+  set owner(value: Bytes | null) {
     if (value === null) {
-      this.unset("fundingRounds");
+      this.unset("owner");
     } else {
-      this.set("fundingRounds", Value.fromStringArray(value as Array<string>));
+      this.set("owner", Value.fromBytes(value as Bytes));
     }
   }
 
-  get createdAt(): string {
+  get coordinator(): string | null {
+    let value = this.get("coordinator");
+    if (value === null || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toString();
+    }
+  }
+
+  set coordinator(value: string | null) {
+    if (value === null) {
+      this.unset("coordinator");
+    } else {
+      this.set("coordinator", Value.fromString(value as string));
+    }
+  }
+
+  get nativeToken(): string | null {
+    let value = this.get("nativeToken");
+    if (value === null || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toString();
+    }
+  }
+
+  set nativeToken(value: string | null) {
+    if (value === null) {
+      this.unset("nativeToken");
+    } else {
+      this.set("nativeToken", Value.fromString(value as string));
+    }
+  }
+
+  get contributorRegistry(): string | null {
+    let value = this.get("contributorRegistry");
+    if (value === null || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toString();
+    }
+  }
+
+  set contributorRegistry(value: string | null) {
+    if (value === null) {
+      this.unset("contributorRegistry");
+    } else {
+      this.set("contributorRegistry", Value.fromString(value as string));
+    }
+  }
+
+  get recipientRegistry(): string | null {
+    let value = this.get("recipientRegistry");
+    if (value === null || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toString();
+    }
+  }
+
+  set recipientRegistry(value: string | null) {
+    if (value === null) {
+      this.unset("recipientRegistry");
+    } else {
+      this.set("recipientRegistry", Value.fromString(value as string));
+    }
+  }
+
+  get currentRound(): string | null {
+    let value = this.get("currentRound");
+    if (value === null || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toString();
+    }
+  }
+
+  set currentRound(value: string | null) {
+    if (value === null) {
+      this.unset("currentRound");
+    } else {
+      this.set("currentRound", Value.fromString(value as string));
+    }
+  }
+
+  get maciFactory(): Bytes | null {
+    let value = this.get("maciFactory");
+    if (value === null || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toBytes();
+    }
+  }
+
+  set maciFactory(value: Bytes | null) {
+    if (value === null) {
+      this.unset("maciFactory");
+    } else {
+      this.set("maciFactory", Value.fromBytes(value as Bytes));
+    }
+  }
+
+  get coordinatorPubKey(): string | null {
+    let value = this.get("coordinatorPubKey");
+    if (value === null || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toString();
+    }
+  }
+
+  set coordinatorPubKey(value: string | null) {
+    if (value === null) {
+      this.unset("coordinatorPubKey");
+    } else {
+      this.set("coordinatorPubKey", Value.fromString(value as string));
+    }
+  }
+
+  get stateTreeDepth(): BigInt | null {
+    let value = this.get("stateTreeDepth");
+    if (value === null || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toBigInt();
+    }
+  }
+
+  set stateTreeDepth(value: BigInt | null) {
+    if (value === null) {
+      this.unset("stateTreeDepth");
+    } else {
+      this.set("stateTreeDepth", Value.fromBigInt(value as BigInt));
+    }
+  }
+
+  get messageTreeDepth(): BigInt | null {
+    let value = this.get("messageTreeDepth");
+    if (value === null || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toBigInt();
+    }
+  }
+
+  set messageTreeDepth(value: BigInt | null) {
+    if (value === null) {
+      this.unset("messageTreeDepth");
+    } else {
+      this.set("messageTreeDepth", Value.fromBigInt(value as BigInt));
+    }
+  }
+
+  get voteOptionTreeDepth(): BigInt | null {
+    let value = this.get("voteOptionTreeDepth");
+    if (value === null || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toBigInt();
+    }
+  }
+
+  set voteOptionTreeDepth(value: BigInt | null) {
+    if (value === null) {
+      this.unset("voteOptionTreeDepth");
+    } else {
+      this.set("voteOptionTreeDepth", Value.fromBigInt(value as BigInt));
+    }
+  }
+
+  get tallyBatchSize(): BigInt | null {
+    let value = this.get("tallyBatchSize");
+    if (value === null || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toBigInt();
+    }
+  }
+
+  set tallyBatchSize(value: BigInt | null) {
+    if (value === null) {
+      this.unset("tallyBatchSize");
+    } else {
+      this.set("tallyBatchSize", Value.fromBigInt(value as BigInt));
+    }
+  }
+
+  get messageBatchSize(): BigInt | null {
+    let value = this.get("messageBatchSize");
+    if (value === null || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toBigInt();
+    }
+  }
+
+  set messageBatchSize(value: BigInt | null) {
+    if (value === null) {
+      this.unset("messageBatchSize");
+    } else {
+      this.set("messageBatchSize", Value.fromBigInt(value as BigInt));
+    }
+  }
+
+  get batchUstVerifier(): BigInt | null {
+    let value = this.get("batchUstVerifier");
+    if (value === null || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toBigInt();
+    }
+  }
+
+  set batchUstVerifier(value: BigInt | null) {
+    if (value === null) {
+      this.unset("batchUstVerifier");
+    } else {
+      this.set("batchUstVerifier", Value.fromBigInt(value as BigInt));
+    }
+  }
+
+  get qvtVerifier(): BigInt | null {
+    let value = this.get("qvtVerifier");
+    if (value === null || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toBigInt();
+    }
+  }
+
+  set qvtVerifier(value: BigInt | null) {
+    if (value === null) {
+      this.unset("qvtVerifier");
+    } else {
+      this.set("qvtVerifier", Value.fromBigInt(value as BigInt));
+    }
+  }
+
+  get signUpDuration(): BigInt | null {
+    let value = this.get("signUpDuration");
+    if (value === null || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toBigInt();
+    }
+  }
+
+  set signUpDuration(value: BigInt | null) {
+    if (value === null) {
+      this.unset("signUpDuration");
+    } else {
+      this.set("signUpDuration", Value.fromBigInt(value as BigInt));
+    }
+  }
+
+  get votingDuration(): BigInt | null {
+    let value = this.get("votingDuration");
+    if (value === null || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toBigInt();
+    }
+  }
+
+  set votingDuration(value: BigInt | null) {
+    if (value === null) {
+      this.unset("votingDuration");
+    } else {
+      this.set("votingDuration", Value.fromBigInt(value as BigInt));
+    }
+  }
+
+  get createdAt(): string | null {
     let value = this.get("createdAt");
-    return value.toString();
+    if (value === null || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toString();
+    }
   }
 
-  set createdAt(value: string) {
-    this.set("createdAt", Value.fromString(value));
+  set createdAt(value: string | null) {
+    if (value === null) {
+      this.unset("createdAt");
+    } else {
+      this.set("createdAt", Value.fromString(value as string));
+    }
   }
 
-  get lastUpdatedAt(): string {
+  get lastUpdatedAt(): string | null {
     let value = this.get("lastUpdatedAt");
-    return value.toString();
+    if (value === null || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toString();
+    }
   }
 
-  set lastUpdatedAt(value: string) {
-    this.set("lastUpdatedAt", Value.fromString(value));
+  set lastUpdatedAt(value: string | null) {
+    if (value === null) {
+      this.unset("lastUpdatedAt");
+    } else {
+      this.set("lastUpdatedAt", Value.fromString(value as string));
+    }
   }
 }
 
@@ -261,85 +396,157 @@ export class FundingRound extends Entity {
     this.set("id", Value.fromString(value));
   }
 
-  get fundingRoundFactory(): string {
+  get fundingRoundFactory(): string | null {
     let value = this.get("fundingRoundFactory");
-    return value.toString();
+    if (value === null || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toString();
+    }
   }
 
-  set fundingRoundFactory(value: string) {
-    this.set("fundingRoundFactory", Value.fromString(value));
+  set fundingRoundFactory(value: string | null) {
+    if (value === null) {
+      this.unset("fundingRoundFactory");
+    } else {
+      this.set("fundingRoundFactory", Value.fromString(value as string));
+    }
   }
 
-  get nativeToken(): string {
+  get nativeToken(): string | null {
     let value = this.get("nativeToken");
-    return value.toString();
+    if (value === null || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toString();
+    }
   }
 
-  set nativeToken(value: string) {
-    this.set("nativeToken", Value.fromString(value));
+  set nativeToken(value: string | null) {
+    if (value === null) {
+      this.unset("nativeToken");
+    } else {
+      this.set("nativeToken", Value.fromString(value as string));
+    }
   }
 
-  get coordinator(): Bytes {
+  get coordinator(): Bytes | null {
     let value = this.get("coordinator");
-    return value.toBytes();
+    if (value === null || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toBytes();
+    }
   }
 
-  set coordinator(value: Bytes) {
-    this.set("coordinator", Value.fromBytes(value));
+  set coordinator(value: Bytes | null) {
+    if (value === null) {
+      this.unset("coordinator");
+    } else {
+      this.set("coordinator", Value.fromBytes(value as Bytes));
+    }
   }
 
-  get maci(): Bytes {
+  get maci(): Bytes | null {
     let value = this.get("maci");
-    return value.toBytes();
+    if (value === null || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toBytes();
+    }
   }
 
-  set maci(value: Bytes) {
-    this.set("maci", Value.fromBytes(value));
+  set maci(value: Bytes | null) {
+    if (value === null) {
+      this.unset("maci");
+    } else {
+      this.set("maci", Value.fromBytes(value as Bytes));
+    }
   }
 
-  get voiceCreditFactor(): BigInt {
+  get voiceCreditFactor(): BigInt | null {
     let value = this.get("voiceCreditFactor");
-    return value.toBigInt();
+    if (value === null || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toBigInt();
+    }
   }
 
-  set voiceCreditFactor(value: BigInt) {
-    this.set("voiceCreditFactor", Value.fromBigInt(value));
+  set voiceCreditFactor(value: BigInt | null) {
+    if (value === null) {
+      this.unset("voiceCreditFactor");
+    } else {
+      this.set("voiceCreditFactor", Value.fromBigInt(value as BigInt));
+    }
   }
 
-  get contributorCount(): BigInt {
+  get contributorCount(): BigInt | null {
     let value = this.get("contributorCount");
-    return value.toBigInt();
+    if (value === null || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toBigInt();
+    }
   }
 
-  set contributorCount(value: BigInt) {
-    this.set("contributorCount", Value.fromBigInt(value));
+  set contributorCount(value: BigInt | null) {
+    if (value === null) {
+      this.unset("contributorCount");
+    } else {
+      this.set("contributorCount", Value.fromBigInt(value as BigInt));
+    }
   }
 
-  get matchingPoolSize(): BigInt {
+  get matchingPoolSize(): BigInt | null {
     let value = this.get("matchingPoolSize");
-    return value.toBigInt();
+    if (value === null || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toBigInt();
+    }
   }
 
-  set matchingPoolSize(value: BigInt) {
-    this.set("matchingPoolSize", Value.fromBigInt(value));
+  set matchingPoolSize(value: BigInt | null) {
+    if (value === null) {
+      this.unset("matchingPoolSize");
+    } else {
+      this.set("matchingPoolSize", Value.fromBigInt(value as BigInt));
+    }
   }
 
-  get totalSpent(): BigInt {
+  get totalSpent(): BigInt | null {
     let value = this.get("totalSpent");
-    return value.toBigInt();
+    if (value === null || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toBigInt();
+    }
   }
 
-  set totalSpent(value: BigInt) {
-    this.set("totalSpent", Value.fromBigInt(value));
+  set totalSpent(value: BigInt | null) {
+    if (value === null) {
+      this.unset("totalSpent");
+    } else {
+      this.set("totalSpent", Value.fromBigInt(value as BigInt));
+    }
   }
 
-  get totalVotes(): BigInt {
+  get totalVotes(): BigInt | null {
     let value = this.get("totalVotes");
-    return value.toBigInt();
+    if (value === null || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toBigInt();
+    }
   }
 
-  set totalVotes(value: BigInt) {
-    this.set("totalVotes", Value.fromBigInt(value));
+  set totalVotes(value: BigInt | null) {
+    if (value === null) {
+      this.unset("totalVotes");
+    } else {
+      this.set("totalVotes", Value.fromBigInt(value as BigInt));
+    }
   }
 
   get isFinalized(): boolean {
@@ -377,73 +584,38 @@ export class FundingRound extends Entity {
     }
   }
 
-  get recipients(): Array<string> | null {
-    let value = this.get("recipients");
-    if (value === null || value.kind == ValueKind.NULL) {
-      return null;
-    } else {
-      return value.toStringArray();
-    }
-  }
-
-  set recipients(value: Array<string> | null) {
-    if (value === null) {
-      this.unset("recipients");
-    } else {
-      this.set("recipients", Value.fromStringArray(value as Array<string>));
-    }
-  }
-
-  get contributors(): Array<string> | null {
-    let value = this.get("contributors");
-    if (value === null || value.kind == ValueKind.NULL) {
-      return null;
-    } else {
-      return value.toStringArray();
-    }
-  }
-
-  set contributors(value: Array<string> | null) {
-    if (value === null) {
-      this.unset("contributors");
-    } else {
-      this.set("contributors", Value.fromStringArray(value as Array<string>));
-    }
-  }
-
-  get contributions(): Array<string> | null {
-    let value = this.get("contributions");
-    if (value === null || value.kind == ValueKind.NULL) {
-      return null;
-    } else {
-      return value.toStringArray();
-    }
-  }
-
-  set contributions(value: Array<string> | null) {
-    if (value === null) {
-      this.unset("contributions");
-    } else {
-      this.set("contributions", Value.fromStringArray(value as Array<string>));
-    }
-  }
-
-  get createdAt(): string {
+  get createdAt(): string | null {
     let value = this.get("createdAt");
-    return value.toString();
+    if (value === null || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toString();
+    }
   }
 
-  set createdAt(value: string) {
-    this.set("createdAt", Value.fromString(value));
+  set createdAt(value: string | null) {
+    if (value === null) {
+      this.unset("createdAt");
+    } else {
+      this.set("createdAt", Value.fromString(value as string));
+    }
   }
 
-  get lastUpdatedAt(): string {
+  get lastUpdatedAt(): string | null {
     let value = this.get("lastUpdatedAt");
-    return value.toString();
+    if (value === null || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toString();
+    }
   }
 
-  set lastUpdatedAt(value: string) {
-    this.set("lastUpdatedAt", Value.fromString(value));
+  set lastUpdatedAt(value: string | null) {
+    if (value === null) {
+      this.unset("lastUpdatedAt");
+    } else {
+      this.set("lastUpdatedAt", Value.fromString(value as string));
+    }
   }
 }
 
@@ -477,48 +649,55 @@ export class RecipientRegistry extends Entity {
     this.set("id", Value.fromString(value));
   }
 
-  get fundingRoundFactory(): string {
+  get fundingRoundFactory(): string | null {
     let value = this.get("fundingRoundFactory");
-    return value.toString();
-  }
-
-  set fundingRoundFactory(value: string) {
-    this.set("fundingRoundFactory", Value.fromString(value));
-  }
-
-  get recipients(): Array<string> | null {
-    let value = this.get("recipients");
     if (value === null || value.kind == ValueKind.NULL) {
       return null;
     } else {
-      return value.toStringArray();
+      return value.toString();
     }
   }
 
-  set recipients(value: Array<string> | null) {
+  set fundingRoundFactory(value: string | null) {
     if (value === null) {
-      this.unset("recipients");
+      this.unset("fundingRoundFactory");
     } else {
-      this.set("recipients", Value.fromStringArray(value as Array<string>));
+      this.set("fundingRoundFactory", Value.fromString(value as string));
     }
   }
 
-  get createdAt(): string {
+  get createdAt(): string | null {
     let value = this.get("createdAt");
-    return value.toString();
+    if (value === null || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toString();
+    }
   }
 
-  set createdAt(value: string) {
-    this.set("createdAt", Value.fromString(value));
+  set createdAt(value: string | null) {
+    if (value === null) {
+      this.unset("createdAt");
+    } else {
+      this.set("createdAt", Value.fromString(value as string));
+    }
   }
 
-  get lastUpdatedAt(): string {
+  get lastUpdatedAt(): string | null {
     let value = this.get("lastUpdatedAt");
-    return value.toString();
+    if (value === null || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toString();
+    }
   }
 
-  set lastUpdatedAt(value: string) {
-    this.set("lastUpdatedAt", Value.fromString(value));
+  set lastUpdatedAt(value: string | null) {
+    if (value === null) {
+      this.unset("lastUpdatedAt");
+    } else {
+      this.set("lastUpdatedAt", Value.fromString(value as string));
+    }
   }
 }
 
@@ -569,58 +748,106 @@ export class Recipient extends Entity {
     }
   }
 
-  get requestType(): string {
+  get requestType(): string | null {
     let value = this.get("requestType");
-    return value.toString();
+    if (value === null || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toString();
+    }
   }
 
-  set requestType(value: string) {
-    this.set("requestType", Value.fromString(value));
+  set requestType(value: string | null) {
+    if (value === null) {
+      this.unset("requestType");
+    } else {
+      this.set("requestType", Value.fromString(value as string));
+    }
   }
 
-  get requester(): string {
+  get requester(): string | null {
     let value = this.get("requester");
-    return value.toString();
+    if (value === null || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toString();
+    }
   }
 
-  set requester(value: string) {
-    this.set("requester", Value.fromString(value));
+  set requester(value: string | null) {
+    if (value === null) {
+      this.unset("requester");
+    } else {
+      this.set("requester", Value.fromString(value as string));
+    }
   }
 
-  get submissionTime(): string {
+  get submissionTime(): string | null {
     let value = this.get("submissionTime");
-    return value.toString();
+    if (value === null || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toString();
+    }
   }
 
-  set submissionTime(value: string) {
-    this.set("submissionTime", Value.fromString(value));
+  set submissionTime(value: string | null) {
+    if (value === null) {
+      this.unset("submissionTime");
+    } else {
+      this.set("submissionTime", Value.fromString(value as string));
+    }
   }
 
-  get deposit(): BigInt {
+  get deposit(): BigInt | null {
     let value = this.get("deposit");
-    return value.toBigInt();
+    if (value === null || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toBigInt();
+    }
   }
 
-  set deposit(value: BigInt) {
-    this.set("deposit", Value.fromBigInt(value));
+  set deposit(value: BigInt | null) {
+    if (value === null) {
+      this.unset("deposit");
+    } else {
+      this.set("deposit", Value.fromBigInt(value as BigInt));
+    }
   }
 
-  get recipientAddress(): Bytes {
+  get recipientAddress(): Bytes | null {
     let value = this.get("recipientAddress");
-    return value.toBytes();
+    if (value === null || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toBytes();
+    }
   }
 
-  set recipientAddress(value: Bytes) {
-    this.set("recipientAddress", Value.fromBytes(value));
+  set recipientAddress(value: Bytes | null) {
+    if (value === null) {
+      this.unset("recipientAddress");
+    } else {
+      this.set("recipientAddress", Value.fromBytes(value as Bytes));
+    }
   }
 
-  get recipientMetadata(): string {
+  get recipientMetadata(): string | null {
     let value = this.get("recipientMetadata");
-    return value.toString();
+    if (value === null || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toString();
+    }
   }
 
-  set recipientMetadata(value: string) {
-    this.set("recipientMetadata", Value.fromString(value));
+  set recipientMetadata(value: string | null) {
+    if (value === null) {
+      this.unset("recipientMetadata");
+    } else {
+      this.set("recipientMetadata", Value.fromString(value as string));
+    }
   }
 
   get rejected(): boolean {
@@ -632,39 +859,38 @@ export class Recipient extends Entity {
     this.set("rejected", Value.fromBoolean(value));
   }
 
-  get fundingRounds(): Array<string> | null {
-    let value = this.get("fundingRounds");
+  get createdAt(): string | null {
+    let value = this.get("createdAt");
     if (value === null || value.kind == ValueKind.NULL) {
       return null;
     } else {
-      return value.toStringArray();
+      return value.toString();
     }
   }
 
-  set fundingRounds(value: Array<string> | null) {
+  set createdAt(value: string | null) {
     if (value === null) {
-      this.unset("fundingRounds");
+      this.unset("createdAt");
     } else {
-      this.set("fundingRounds", Value.fromStringArray(value as Array<string>));
+      this.set("createdAt", Value.fromString(value as string));
     }
   }
 
-  get createdAt(): string {
-    let value = this.get("createdAt");
-    return value.toString();
-  }
-
-  set createdAt(value: string) {
-    this.set("createdAt", Value.fromString(value));
-  }
-
-  get lastUpdatedAt(): string {
+  get lastUpdatedAt(): string | null {
     let value = this.get("lastUpdatedAt");
-    return value.toString();
+    if (value === null || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toString();
+    }
   }
 
-  set lastUpdatedAt(value: string) {
-    this.set("lastUpdatedAt", Value.fromString(value));
+  set lastUpdatedAt(value: string | null) {
+    if (value === null) {
+      this.unset("lastUpdatedAt");
+    } else {
+      this.set("lastUpdatedAt", Value.fromString(value as string));
+    }
   }
 }
 
@@ -698,48 +924,38 @@ export class ContributorRegistry extends Entity {
     this.set("id", Value.fromString(value));
   }
 
-  get fundingRoundFactory(): string {
-    let value = this.get("fundingRoundFactory");
-    return value.toString();
-  }
-
-  set fundingRoundFactory(value: string) {
-    this.set("fundingRoundFactory", Value.fromString(value));
-  }
-
-  get contributors(): Array<string> | null {
-    let value = this.get("contributors");
+  get createdAt(): string | null {
+    let value = this.get("createdAt");
     if (value === null || value.kind == ValueKind.NULL) {
       return null;
     } else {
-      return value.toStringArray();
+      return value.toString();
     }
   }
 
-  set contributors(value: Array<string> | null) {
+  set createdAt(value: string | null) {
     if (value === null) {
-      this.unset("contributors");
+      this.unset("createdAt");
     } else {
-      this.set("contributors", Value.fromStringArray(value as Array<string>));
+      this.set("createdAt", Value.fromString(value as string));
     }
   }
 
-  get createdAt(): string {
-    let value = this.get("createdAt");
-    return value.toString();
-  }
-
-  set createdAt(value: string) {
-    this.set("createdAt", Value.fromString(value));
-  }
-
-  get lastUpdatedAt(): string {
+  get lastUpdatedAt(): string | null {
     let value = this.get("lastUpdatedAt");
-    return value.toString();
+    if (value === null || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toString();
+    }
   }
 
-  set lastUpdatedAt(value: string) {
-    this.set("lastUpdatedAt", Value.fromString(value));
+  set lastUpdatedAt(value: string | null) {
+    if (value === null) {
+      this.unset("lastUpdatedAt");
+    } else {
+      this.set("lastUpdatedAt", Value.fromString(value as string));
+    }
   }
 }
 
@@ -773,15 +989,6 @@ export class Contributor extends Entity {
     this.set("id", Value.fromString(value));
   }
 
-  get contributorRegistry(): string {
-    let value = this.get("contributorRegistry");
-    return value.toString();
-  }
-
-  set contributorRegistry(value: string) {
-    this.set("contributorRegistry", Value.fromString(value));
-  }
-
   get verified(): boolean {
     let value = this.get("verified");
     return value.toBoolean();
@@ -791,29 +998,20 @@ export class Contributor extends Entity {
     this.set("verified", Value.fromBoolean(value));
   }
 
-  get verifiedTimeStamp(): string {
+  get verifiedTimeStamp(): string | null {
     let value = this.get("verifiedTimeStamp");
-    return value.toString();
-  }
-
-  set verifiedTimeStamp(value: string) {
-    this.set("verifiedTimeStamp", Value.fromString(value));
-  }
-
-  get sponsors(): Array<Bytes> | null {
-    let value = this.get("sponsors");
     if (value === null || value.kind == ValueKind.NULL) {
       return null;
     } else {
-      return value.toBytesArray();
+      return value.toString();
     }
   }
 
-  set sponsors(value: Array<Bytes> | null) {
+  set verifiedTimeStamp(value: string | null) {
     if (value === null) {
-      this.unset("sponsors");
+      this.unset("verifiedTimeStamp");
     } else {
-      this.set("sponsors", Value.fromBytesArray(value as Array<Bytes>));
+      this.set("verifiedTimeStamp", Value.fromString(value as string));
     }
   }
 
@@ -834,56 +1032,38 @@ export class Contributor extends Entity {
     }
   }
 
-  get fundingRounds(): Array<string> | null {
-    let value = this.get("fundingRounds");
-    if (value === null || value.kind == ValueKind.NULL) {
-      return null;
-    } else {
-      return value.toStringArray();
-    }
-  }
-
-  set fundingRounds(value: Array<string> | null) {
-    if (value === null) {
-      this.unset("fundingRounds");
-    } else {
-      this.set("fundingRounds", Value.fromStringArray(value as Array<string>));
-    }
-  }
-
-  get contributions(): Array<string> | null {
-    let value = this.get("contributions");
-    if (value === null || value.kind == ValueKind.NULL) {
-      return null;
-    } else {
-      return value.toStringArray();
-    }
-  }
-
-  set contributions(value: Array<string> | null) {
-    if (value === null) {
-      this.unset("contributions");
-    } else {
-      this.set("contributions", Value.fromStringArray(value as Array<string>));
-    }
-  }
-
-  get createdAt(): string {
+  get createdAt(): string | null {
     let value = this.get("createdAt");
-    return value.toString();
+    if (value === null || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toString();
+    }
   }
 
-  set createdAt(value: string) {
-    this.set("createdAt", Value.fromString(value));
+  set createdAt(value: string | null) {
+    if (value === null) {
+      this.unset("createdAt");
+    } else {
+      this.set("createdAt", Value.fromString(value as string));
+    }
   }
 
-  get lastUpdatedAt(): string {
+  get lastUpdatedAt(): string | null {
     let value = this.get("lastUpdatedAt");
-    return value.toString();
+    if (value === null || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toString();
+    }
   }
 
-  set lastUpdatedAt(value: string) {
-    this.set("lastUpdatedAt", Value.fromString(value));
+  set lastUpdatedAt(value: string | null) {
+    if (value === null) {
+      this.unset("lastUpdatedAt");
+    } else {
+      this.set("lastUpdatedAt", Value.fromString(value as string));
+    }
   }
 }
 
@@ -917,15 +1097,6 @@ export class Coordinator extends Entity {
     this.set("id", Value.fromString(value));
   }
 
-  get fundingRoundFactory(): string {
-    let value = this.get("fundingRoundFactory");
-    return value.toString();
-  }
-
-  set fundingRoundFactory(value: string) {
-    this.set("fundingRoundFactory", Value.fromString(value));
-  }
-
   get contact(): string | null {
     let value = this.get("contact");
     if (value === null || value.kind == ValueKind.NULL) {
@@ -943,22 +1114,38 @@ export class Coordinator extends Entity {
     }
   }
 
-  get createdAt(): string {
+  get createdAt(): string | null {
     let value = this.get("createdAt");
-    return value.toString();
+    if (value === null || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toString();
+    }
   }
 
-  set createdAt(value: string) {
-    this.set("createdAt", Value.fromString(value));
+  set createdAt(value: string | null) {
+    if (value === null) {
+      this.unset("createdAt");
+    } else {
+      this.set("createdAt", Value.fromString(value as string));
+    }
   }
 
-  get lastUpdatedAt(): string {
+  get lastUpdatedAt(): string | null {
     let value = this.get("lastUpdatedAt");
-    return value.toString();
+    if (value === null || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toString();
+    }
   }
 
-  set lastUpdatedAt(value: string) {
-    this.set("lastUpdatedAt", Value.fromString(value));
+  set lastUpdatedAt(value: string | null) {
+    if (value === null) {
+      this.unset("lastUpdatedAt");
+    } else {
+      this.set("lastUpdatedAt", Value.fromString(value as string));
+    }
   }
 }
 
@@ -992,49 +1179,89 @@ export class Contribution extends Entity {
     this.set("id", Value.fromString(value));
   }
 
-  get contributor(): string {
+  get contributor(): string | null {
     let value = this.get("contributor");
-    return value.toString();
+    if (value === null || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toString();
+    }
   }
 
-  set contributor(value: string) {
-    this.set("contributor", Value.fromString(value));
+  set contributor(value: string | null) {
+    if (value === null) {
+      this.unset("contributor");
+    } else {
+      this.set("contributor", Value.fromString(value as string));
+    }
   }
 
-  get fundingRound(): string {
+  get fundingRound(): string | null {
     let value = this.get("fundingRound");
-    return value.toString();
+    if (value === null || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toString();
+    }
   }
 
-  set fundingRound(value: string) {
-    this.set("fundingRound", Value.fromString(value));
+  set fundingRound(value: string | null) {
+    if (value === null) {
+      this.unset("fundingRound");
+    } else {
+      this.set("fundingRound", Value.fromString(value as string));
+    }
   }
 
-  get amount(): BigInt {
+  get amount(): BigInt | null {
     let value = this.get("amount");
-    return value.toBigInt();
+    if (value === null || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toBigInt();
+    }
   }
 
-  set amount(value: BigInt) {
-    this.set("amount", Value.fromBigInt(value));
+  set amount(value: BigInt | null) {
+    if (value === null) {
+      this.unset("amount");
+    } else {
+      this.set("amount", Value.fromBigInt(value as BigInt));
+    }
   }
 
-  get voiceCredits(): BigInt {
+  get voiceCredits(): BigInt | null {
     let value = this.get("voiceCredits");
-    return value.toBigInt();
+    if (value === null || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toBigInt();
+    }
   }
 
-  set voiceCredits(value: BigInt) {
-    this.set("voiceCredits", Value.fromBigInt(value));
+  set voiceCredits(value: BigInt | null) {
+    if (value === null) {
+      this.unset("voiceCredits");
+    } else {
+      this.set("voiceCredits", Value.fromBigInt(value as BigInt));
+    }
   }
 
-  get createdAt(): string {
+  get createdAt(): string | null {
     let value = this.get("createdAt");
-    return value.toString();
+    if (value === null || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toString();
+    }
   }
 
-  set createdAt(value: string) {
-    this.set("createdAt", Value.fromString(value));
+  set createdAt(value: string | null) {
+    if (value === null) {
+      this.unset("createdAt");
+    } else {
+      this.set("createdAt", Value.fromString(value as string));
+    }
   }
 }
 
@@ -1068,49 +1295,89 @@ export class Donation extends Entity {
     this.set("id", Value.fromString(value));
   }
 
-  get recipient(): string {
+  get recipient(): string | null {
     let value = this.get("recipient");
-    return value.toString();
+    if (value === null || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toString();
+    }
   }
 
-  set recipient(value: string) {
-    this.set("recipient", Value.fromString(value));
+  set recipient(value: string | null) {
+    if (value === null) {
+      this.unset("recipient");
+    } else {
+      this.set("recipient", Value.fromString(value as string));
+    }
   }
 
-  get fundingRound(): string {
+  get fundingRound(): string | null {
     let value = this.get("fundingRound");
-    return value.toString();
+    if (value === null || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toString();
+    }
   }
 
-  set fundingRound(value: string) {
-    this.set("fundingRound", Value.fromString(value));
+  set fundingRound(value: string | null) {
+    if (value === null) {
+      this.unset("fundingRound");
+    } else {
+      this.set("fundingRound", Value.fromString(value as string));
+    }
   }
 
-  get amount(): BigInt {
+  get amount(): BigInt | null {
     let value = this.get("amount");
-    return value.toBigInt();
+    if (value === null || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toBigInt();
+    }
   }
 
-  set amount(value: BigInt) {
-    this.set("amount", Value.fromBigInt(value));
+  set amount(value: BigInt | null) {
+    if (value === null) {
+      this.unset("amount");
+    } else {
+      this.set("amount", Value.fromBigInt(value as BigInt));
+    }
   }
 
-  get voteOptionIndex(): BigInt {
+  get voteOptionIndex(): BigInt | null {
     let value = this.get("voteOptionIndex");
-    return value.toBigInt();
+    if (value === null || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toBigInt();
+    }
   }
 
-  set voteOptionIndex(value: BigInt) {
-    this.set("voteOptionIndex", Value.fromBigInt(value));
+  set voteOptionIndex(value: BigInt | null) {
+    if (value === null) {
+      this.unset("voteOptionIndex");
+    } else {
+      this.set("voteOptionIndex", Value.fromBigInt(value as BigInt));
+    }
   }
 
-  get createdAt(): string {
+  get createdAt(): string | null {
     let value = this.get("createdAt");
-    return value.toString();
+    if (value === null || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toString();
+    }
   }
 
-  set createdAt(value: string) {
-    this.set("createdAt", Value.fromString(value));
+  set createdAt(value: string | null) {
+    if (value === null) {
+      this.unset("createdAt");
+    } else {
+      this.set("createdAt", Value.fromString(value as string));
+    }
   }
 }
 
@@ -1144,13 +1411,21 @@ export class Token extends Entity {
     this.set("id", Value.fromString(value));
   }
 
-  get tokenAddress(): Bytes {
+  get tokenAddress(): Bytes | null {
     let value = this.get("tokenAddress");
-    return value.toBytes();
+    if (value === null || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toBytes();
+    }
   }
 
-  set tokenAddress(value: Bytes) {
-    this.set("tokenAddress", Value.fromBytes(value));
+  set tokenAddress(value: Bytes | null) {
+    if (value === null) {
+      this.unset("tokenAddress");
+    } else {
+      this.set("tokenAddress", Value.fromBytes(value as Bytes));
+    }
   }
 
   get symbol(): string | null {
@@ -1187,21 +1462,37 @@ export class Token extends Entity {
     }
   }
 
-  get createdAt(): string {
+  get createdAt(): string | null {
     let value = this.get("createdAt");
-    return value.toString();
+    if (value === null || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toString();
+    }
   }
 
-  set createdAt(value: string) {
-    this.set("createdAt", Value.fromString(value));
+  set createdAt(value: string | null) {
+    if (value === null) {
+      this.unset("createdAt");
+    } else {
+      this.set("createdAt", Value.fromString(value as string));
+    }
   }
 
-  get lastUpdatedAt(): string {
+  get lastUpdatedAt(): string | null {
     let value = this.get("lastUpdatedAt");
-    return value.toString();
+    if (value === null || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toString();
+    }
   }
 
-  set lastUpdatedAt(value: string) {
-    this.set("lastUpdatedAt", Value.fromString(value));
+  set lastUpdatedAt(value: string | null) {
+    if (value === null) {
+      this.unset("lastUpdatedAt");
+    } else {
+      this.set("lastUpdatedAt", Value.fromString(value as string));
+    }
   }
 }
