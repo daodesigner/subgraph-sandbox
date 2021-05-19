@@ -10,7 +10,7 @@ dataSources:
     source:
       address: "0x549F91A93c94358C5f5380D7ABF23E1340CfF2db"
       abi: FundingRoundFactory
-      startBlock: 14099200
+      startBlock: 15000200
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
@@ -45,7 +45,7 @@ dataSources:
     source:
       address: "0x71CD33852D9A3cc452af9D8f93c7EC5249876649"
       abi: OptimisticRecipientRegistry
-      startBlock: 14399200
+      startBlock: 15000200
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
@@ -70,7 +70,7 @@ dataSources:
     source:
       address: "0xe312E958c47b971C250bC1228A11Df1276643e5D"
       abi: BrightIdUserRegistry
-      startBlock: 13000489
+      startBlock: 15000200
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4

@@ -1,4 +1,4 @@
-import { BigInt, log } from "@graphprotocol/graph-ts";
+import { Address, BigInt, log } from "@graphprotocol/graph-ts";
 import {
   CoordinatorChanged,
   FundingSourceAdded,
@@ -73,6 +73,10 @@ export function handleFundingSourceRemoved(event: FundingSourceRemoved): void {
 
 export function handleOwnershipTransferred(event: OwnershipTransferred): void {
   log.info("handleOwnershipTransferred", []);
+}
+
+export function handleRoundFinalized(event: RoundFinalized): void {
+  log.info("handleRoundFinalized", []);
   let fundingRoundFactoryContract = FundingRoundFactoryContract.bind(event.address);
   let fundingRoundAddress = fundingRoundFactoryContract.getCurrentRound();
 
@@ -95,10 +99,6 @@ export function handleOwnershipTransferred(event: OwnershipTransferred): void {
   fundingRound.matchingPoolSize = matchingPoolSize;
 
   fundingRound.save();
-}
-
-export function handleRoundFinalized(event: RoundFinalized): void {
-  log.info("handleRoundFinalized", []);
 }
 
 export function handleRoundStarted(event: RoundStarted): void {
