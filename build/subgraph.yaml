@@ -5,47 +5,12 @@ schema:
   file: schema.graphql
 dataSources:
   - kind: ethereum/contract
-    name: FundingRound
-    network: xdai
-    source:
-      address: "0x2179BbAcd3E77f6C2327F1BdAC125485ff537725"
-      abi: FundingRound
-      startBlock: 14099200
-    mapping:
-      kind: ethereum/events
-      apiVersion: 0.0.4
-      language: wasm/assemblyscript
-      entities:
-        - FundingRound
-        - Contribution
-        - Donation
-        - Recipient
-        - Contributor
-      abis:
-        - name: FundingRound
-          file: FundingRound/abis/FundingRound.json
-      eventHandlers:
-        - event: Contribution(indexed address,uint256)
-          handler: handleContribution
-        - event: ContributionWithdrawn(indexed address)
-          handler: handleContributionWithdrawn
-        - event: FundsClaimed(indexed uint256,indexed address,uint256)
-          handler: handleFundsClaimed
-        - event: OwnershipTransferred(indexed address,indexed address)
-          handler: handleOwnershipTransferred
-        - event: TallyPublished(string)
-          handler: handleTallyPublished
-      callHandlers:
-        - function: register(address,bytes)
-          handler: handleRegister
-      file: FundingRound/FundingRound.wasm
-  - kind: ethereum/contract
     name: FundingRoundFactory
     network: xdai
     source:
       address: "0x549F91A93c94358C5f5380D7ABF23E1340CfF2db"
       abi: FundingRoundFactory
-      startBlock: 14099200
+      startBlock: 15099200
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
