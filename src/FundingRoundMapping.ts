@@ -1,4 +1,4 @@
-import { BigInt, store } from "@graphprotocol/graph-ts";
+import { BigInt, log, store } from "@graphprotocol/graph-ts";
 import { BrightIdUserRegistry as BrightIdUserRegistryContract } from "../generated/BrightIdUserRegistry/BrightIdUserRegistry";
 import {
   Contribution,
@@ -44,6 +44,7 @@ import {
 // - contract.voiceCreditFactor(...)
 
 export function handleContribution(event: Contribution): void {
+  log.info("handleContribution", []);
   let fundingRoundId = event.address.toHexString();
   let contributorId = event.params._sender.toHexString();
   let contributionId = fundingRoundId.concat("-contribution-").concat(contributorId);
@@ -99,6 +100,7 @@ export function handleContribution(event: Contribution): void {
 }
 
 export function handleContributionWithdrawn(event: ContributionWithdrawn): void {
+  log.info("handleContributionWithdrawn", []);
   let fundingRoundId = event.address.toHexString();
   let contributorId = event.params._contributor.toHexString();
   let contributionId = fundingRoundId.concat("-contribution-").concat(contributorId);
@@ -112,6 +114,7 @@ export function handleContributionWithdrawn(event: ContributionWithdrawn): void 
 }
 
 export function handleFundsClaimed(event: FundsClaimed): void {
+  log.info("handleFundsClaimed", []);
   let fundingRoundId = event.address.toHexString();
   let recipientId = event.params._recipient.toHexString();
   let donationId = recipientId.concat("-donation-").concat(fundingRoundId);
@@ -135,6 +138,7 @@ export function handleFundsClaimed(event: FundsClaimed): void {
 }
 
 export function handleTallyPublished(event: TallyPublished): void {
+  log.info("handleTallyPublished", []);
   let fundingRoundId = event.address.toHexString();
   let timestamp = event.block.timestamp.toString();
 
@@ -146,8 +150,11 @@ export function handleTallyPublished(event: TallyPublished): void {
 //TODO: Need library to decode ABI in subgraph, or an additional event fired here.
 //NOTE: Contributors must first be verified in the Registry contract before they can register for a particular funding round
 export function handleRegister(call: RegisterCall): void {
+  log.info("handleRegister", []);
   let fundingRoundId = call.to.toHexString();
   let timestamp = call.block.timestamp.toString();
   call.inputs._data;
 }
-export function handleOwnershipTransferred(event: OwnershipTransferred): void {}
+export function handleOwnershipTransferred(event: OwnershipTransferred): void {
+  log.info("handleOwnershipTransferred- Funding Round", []);
+}

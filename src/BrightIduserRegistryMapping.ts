@@ -1,4 +1,4 @@
-import { BigInt } from "@graphprotocol/graph-ts";
+import { BigInt, log } from "@graphprotocol/graph-ts";
 import {
   OwnershipTransferred,
   SetBrightIdSettings,
@@ -21,8 +21,14 @@ import {
 // - contract.verifications(...)
 // - contract.verifier(...)
 
-export function handleOwnershipTransferred(event: OwnershipTransferred): void {}
+export function handleOwnershipTransferred(event: OwnershipTransferred): void {
+  log.info("handleOwnershipTransferred", []);
+}
 
-export function handleSetBrightIdSettings(event: SetBrightIdSettings): void {}
+export function handleSetBrightIdSettings(event: SetBrightIdSettings): void {
+  log.info("handleSetBrightIdSettings", []);
+}
 
-export function handleSponsor(event: Sponsor): void {}
+export function handleSponsor(event: Sponsor): void {
+  log.info("handleSponsor", []);
+}

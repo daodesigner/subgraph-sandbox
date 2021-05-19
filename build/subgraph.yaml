@@ -1,4 +1,6 @@
 specVersion: 0.0.2
+description: clr.fund sandbox
+repository: https://github.com/daodesigner/subgraph-sandbox
 schema:
   file: schema.graphql
 dataSources:
@@ -49,6 +51,7 @@ dataSources:
       entities:
         - FundingRound
         - Contribution
+        - Donation
         - Recipient
         - Contributor
       abis:
@@ -65,6 +68,9 @@ dataSources:
           handler: handleOwnershipTransferred
         - event: TallyPublished(string)
           handler: handleTallyPublished
+      callHandlers:
+        - function: register(address,bytes)
+          handler: handleRegister
       file: FundingRound/FundingRound.wasm
   - kind: ethereum/contract
     name: OptimisticRecipientRegistry

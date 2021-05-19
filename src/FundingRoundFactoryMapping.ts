@@ -1,4 +1,4 @@
-import { BigInt } from "@graphprotocol/graph-ts";
+import { BigInt, log } from "@graphprotocol/graph-ts";
 import {
   CoordinatorChanged,
   FundingSourceAdded,
@@ -34,16 +34,29 @@ export function handleCoordinatorChanged(event: CoordinatorChanged): void {
   // `new Entity(...)`, set the fields that should be updated and save the
   // entity back to the store. Fields that were not set or unset remain
   // unchanged, allowing for partial updates to be applied.
+  log.info("handleCoordinatorChanged", []);
 }
 
-export function handleFundingSourceAdded(event: FundingSourceAdded): void {}
+export function handleFundingSourceAdded(event: FundingSourceAdded): void {
+  log.info("handleFundingSourceAdded", []);
+}
 
-export function handleFundingSourceRemoved(event: FundingSourceRemoved): void {}
+export function handleFundingSourceRemoved(event: FundingSourceRemoved): void {
+  log.info("handleFundingSourceRemoved", []);
+}
 
-export function handleOwnershipTransferred(event: OwnershipTransferred): void {}
+export function handleOwnershipTransferred(event: OwnershipTransferred): void {
+  log.info("handleOwnershipTransferred", []);
+}
 
-export function handleRoundFinalized(event: RoundFinalized): void {}
+export function handleRoundFinalized(event: RoundFinalized): void {
+  log.info("handleRoundFinalized", []);
+}
 
-export function handleRoundStarted(event: RoundStarted): void {}
+export function handleRoundStarted(event: RoundStarted): void {
+  log.info("handleRoundStarted", []);
+}
 
-export function handleTokenChanged(event: TokenChanged): void {}
+export function handleTokenChanged(event: TokenChanged): void {
+  log.info("handleTokenChanged", []);
+}

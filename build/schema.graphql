@@ -1,13 +1,13 @@
 type FundingRoundFactory @entity {
   id: ID!
-  owner: String!
+  owner: Bytes!
   coordinator: Coordinator!
   nativeToken: Token!
   contributorRegistry: ContributorRegistry!
   recipientRegistry: RecipientRegistry!
   currentRound: FundingRound!
 
-  maciFactory: String!
+  maciFactory: Bytes!
   coordinatorPubKey: String!
   stateTreeDepth: BigInt!
   messageTreeDepth: BigInt!
@@ -31,8 +31,8 @@ type FundingRound @entity {
   nativeToken: Token!
 
 
-  coordinator: String!
-  maci: String!
+  coordinator: Bytes!
+  maci: Bytes!
   voiceCreditFactor: BigInt!
   contributorCount: BigInt!
   matchingPoolSize: BigInt!
@@ -40,6 +40,7 @@ type FundingRound @entity {
   totalVotes: BigInt!
   isFinalized: Boolean!
   isCancelled: Boolean!
+  tallyHash: String
 
 
   recipients: [Recipient!] @derivedFrom(field: "fundingRounds")
@@ -64,13 +65,13 @@ type RecipientRegistry @entity {
 
 type Recipient @entity {
   id: ID!
-  recipientRegistry: RecipientRegistry!
+  recipientRegistry: RecipientRegistry
 
   requestType: String!
   requester: String!
   submissionTime: String!
   deposit: BigInt!
-  recipientAddress: String!
+  recipientAddress: Bytes!
   recipientMetadata: String!
 
 
@@ -98,9 +99,11 @@ type Contributor @entity {
 
   verified: Boolean!
   verifiedTimeStamp: String!
-  sponsors: [String!]
+  sponsors: [Bytes!]
+  contributorAddress: Bytes
 
   fundingRounds: [FundingRound!]
+  contributions: [Contribution!] @derivedFrom(field: "contributor")
 
   createdAt: String!
   lastUpdatedAt: String!
@@ -120,6 +123,17 @@ type Contribution @entity {
   contributor: Contributor!
   fundingRound: FundingRound!
   amount: BigInt!
+  voiceCredits: BigInt!
+
+  createdAt: String!
+}
+
+type Donation @entity {
+  id: ID!
+  recipient: Recipient!
+  fundingRound: FundingRound!
+  amount: BigInt!
+  voteOptionIndex: BigInt!
 
   createdAt: String!
 }

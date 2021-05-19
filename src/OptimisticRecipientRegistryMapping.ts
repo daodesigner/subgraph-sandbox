@@ -1,4 +1,4 @@
-import { BigInt } from "@graphprotocol/graph-ts";
+import { BigInt, log } from "@graphprotocol/graph-ts";
 import {
   OwnershipTransferred,
   RequestResolved,
@@ -24,8 +24,14 @@ import {
 // - contract.owner(...)
 // - contract.setMaxRecipients(...)
 
-export function handleOwnershipTransferred(event: OwnershipTransferred): void {}
+export function handleOwnershipTransferred(event: OwnershipTransferred): void {
+  log.info("handleOwnershipTransferred - recipient registry", []);
+}
 
-export function handleRequestResolved(event: RequestResolved): void {}
+export function handleRequestResolved(event: RequestResolved): void {
+  log.info("handleRequestResolved", []);
+}
 
-export function handleRequestSubmitted(event: RequestSubmitted): void {}
+export function handleRequestSubmitted(event: RequestSubmitted): void {
+  log.info("handleRequestSubmitted", []);
+}
